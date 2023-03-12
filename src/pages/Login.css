@@ -1,0 +1,35 @@
+:root {
+    --teal-green: #128C7E;
+    --teal-green-dark: #075E54;
+    --light-green: #25D366;
+    --blue: #34B7F1;
+}
+
+.loginForm {
+    background: var(--teal-green-dark);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginForm form {
+    display: flex;
+    flex-direction: column;
+    background: var(--teal-green);
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+    width: 18%;
+}
+
+.loginForm input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+}
+
+
+.loginForm span {
+    padding: 10px 0;
+}
