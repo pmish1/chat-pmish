@@ -6,7 +6,7 @@ import {auth, db, storage} from '../Firebase'
 
 import './Register.css'
 
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 
@@ -48,7 +48,16 @@ function Register() {
                 () => {
                     //once upload successful, get the downloadURL and set it to the photoURL
                     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                        //add the user to the DB
+                        //update the profile of the signed in user on the auth side 
+                        //auth side and db side are different 
+                        await updateProfile(auth.currentUser, {
+                            displayName: username,
+                            photoURL: downloadURL,
+                        })
+
+
+                        //add the user to the DB, note: you aren't adding the user associated with the auth side
+                        //that why you need to re-enter some values 
                         await setDoc(doc(db, "users", response.user.uid), {
                             displayName: username,
                             email, 

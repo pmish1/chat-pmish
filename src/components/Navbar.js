@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { auth } from '../Firebase'
 import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/UserContext'
 
 function Navbar() {
-
     const navigate = useNavigate()
+
+    const currentUser = useContext(UserContext)
 
     const handleSignOut = () => {
         try {
@@ -18,9 +20,9 @@ function Navbar() {
 
   return (
       <div className="navbar">
-        <h3>Username</h3>
+        <h3>{currentUser?.displayName}</h3>
         <img 
-            src="https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+            src={currentUser?.photoURL} 
             alt="profile image" 
         />
         <button onClick={handleSignOut}>Logout</button>
