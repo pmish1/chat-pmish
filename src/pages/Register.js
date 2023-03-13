@@ -82,8 +82,8 @@ function Register() {
             <input type="text" placeholder='username' onChange={(e) => setUsername(e.target.value)}/>
             <input type="email" placeholder='email' onChange={(e) => setEmail(e.target.value)}/>
             <input type="password" placeholder='password' onChange={(e) => setPassword(e.target.value)}/>
-            <input type="file" id="profilePic" onChange={(e) => setFile(e.target.files[0])} />
-            <label htmlFor="profilePic">Add profile picture</label>
+            <input type="file" id="profilePic" onChange={(e) => setFile(e.target.files[0])} required/>
+            <label htmlFor="profilePic" required>Add profile picture</label>
 
             <button type='submit' onClick={handleSubmit}>Register</button>
             
