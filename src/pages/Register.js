@@ -64,6 +64,8 @@ function Register() {
                             uid: response.user.uid,
                             photoURL: downloadURL
                         })
+
+                        await setDoc((doc(db, "userChats", response.user.uid)), {})
                     });
                     navigate('/home')
                 }

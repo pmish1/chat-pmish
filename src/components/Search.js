@@ -1,11 +1,14 @@
-import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
-import React, { useState } from 'react'
+import { collection, doc, getDoc, getDocs, query, serverTimestamp, updateDoc, where } from 'firebase/firestore'
+import React, { useContext, useState } from 'react'
 import { db } from '../Firebase'
+import { UserContext } from '../context/UserContext'
 
 function Search() {
     const [term, setTerm] = useState("")
     const [result, setResult] = useState(null)
     const [notFound, setNotFound] = useState(false)
+
+    const currentUser = useContext(UserContext)
 
     const handleSearch = async (e) => {
         const q = query(collection(db, "users"), where("displayName", '==', term))
@@ -16,6 +19,36 @@ function Search() {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const handleClick = async () => {
+        console.log(currentUser.uid + result.uid)
+
+        try {
+            //add to signed in user data
+            await updateDoc(doc(db, "userChats", currentUser.uid), {
+                [currentUser.uid + result.uid]: {
+                    user: currentUser.displayName,
+                    talkingToID: result.uid,
+                    talkingTo: result.displayName,
+                    lastMessage: [],
+                },
+                timestamp: serverTimestamp()
+            })
+            //add to clicked on user data
+            await updateDoc(doc(db, "userChats", result.uid), {
+                [currentUser.uid + result.uid]: {
+                    user: result.displayName,
+                    talkingToID: currentUser.uid,
+                    talkingTo: currentUser.displayName,
+                    lastMessage: [],
+                },
+                [(currentUser.uid + result.uid) + '.timestamp']: serverTimestamp()
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
   return (
@@ -29,7 +62,7 @@ function Search() {
 
         {
             result && 
-                <div className='search__result'>
+                <div className='search__result' onClick={handleClick}>
                     <img src={result.photoURL} alt="" />
                     <h3>{result.displayName}</h3>
                 </div>

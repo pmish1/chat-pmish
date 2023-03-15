@@ -53,6 +53,9 @@
     align-items: center;
     color: white;
 }
+.search__result:hover {
+    background-color: grey;
+}
 
 .search__result img {
     width: 70px;
