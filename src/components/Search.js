@@ -11,15 +11,12 @@ function Search() {
         const q = query(collection(db, "users"), where("displayName", '==', term))
 
         try {
-
             const querySnapshot = await getDocs(q)
             querySnapshot?.forEach(doc => setResult(doc.data()))
         } catch (error) {
             console.log(error)
         }
     }
-
-
 
   return (
     <div className='search'>
