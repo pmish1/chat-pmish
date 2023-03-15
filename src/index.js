@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import {UserContextProvider} from './context/UserContext'
+import { ChatContextProvider } from './context/ChatContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <UserContextProvider>
-        <React.StrictMode>
-            <App />
-        </React.StrictMode>
+        <ChatContextProvider>
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        </ChatContextProvider>
     </UserContextProvider>
 );
 

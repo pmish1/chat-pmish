@@ -31,6 +31,7 @@ function Search() {
                     user: currentUser.displayName,
                     talkingToID: result.uid,
                     talkingTo: result.displayName,
+                    photoURL: result.photoURL,
                     lastMessage: [],
                 },
                 timestamp: serverTimestamp()
@@ -41,6 +42,7 @@ function Search() {
                     user: result.displayName,
                     talkingToID: currentUser.uid,
                     talkingTo: currentUser.displayName,
+                    photoURL: currentUser.photoURL,
                     lastMessage: [],
                 },
                 [(currentUser.uid + result.uid) + '.timestamp']: serverTimestamp()

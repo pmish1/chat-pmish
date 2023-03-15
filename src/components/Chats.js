@@ -1,24 +1,45 @@
-import React from 'react'
+import { doc, getDoc } from 'firebase/firestore'
+import React, { useContext, useEffect, useState } from 'react'
+import { ChatContext } from '../context/ChatContext'
+import { UserContext } from '../context/UserContext'
+import { db } from '../Firebase'
 
 function Chats() {
+    const [chats, setChats] = useState(null)
+    const currentUser = useContext(UserContext)
+    const {data, dispatch} = useContext(ChatContext)
+
+
+    useEffect(() => {
+        const getChats = async () => {
+            try {
+                const response = await getDoc(doc(db, "userChats", currentUser.uid))
+                setChats(response.data())
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        return () => {getChats()}
+    }, [currentUser.uid])
+
+    const handleClick = (userInfo) => {
+        dispatch({type: 'CHANGE_USER', payload: userInfo})
+    }
+
+
   return (
     <>
-        <div className="chats">
-            <h3>username</h3>
-            <img 
-                src="https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                alt="profile image" 
-            />
-            <p>Last message</p>
-        </div>
-        <div className="chats">
-            <h3>username</h3>
-            <img 
-                src="https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                alt="profile image" 
-            />
-            <p>Last message</p>
-        </div>
+        {chats && Object.entries(chats).map((chat) => {
+            return (
+                <div className="chats" key={chat[0]} onClick={() => handleClick(chat)}>
+                    <h3>{chat[1].talkingTo}</h3>
+                    <img 
+                        src={chat[1].photoURL}  
+                        alt="profile image"
+                    />
+                </div>
+            )
+        })}
     </>
   )
 }
