@@ -1,49 +1,58 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ChatContext } from '../context/ChatContext'
+import { UserContext } from '../context/UserContext'
 
-function Message() {
+function Message({m}) {
+    const currentUser = useContext(UserContext)
+    const {data, dispatch} = useContext(ChatContext)
+
   return (
     <>
-        <div className='message'>
-            <img 
-                className='message__profile-image'
-                src="https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                alt="profile image" 
-            />
-            <p className='message__sent-message'>example message</p>
-            <img 
-                className='message__sent-image'
-                src="https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                alt="sent image" 
-            />
-        </div>
-        <div className='message owner'>
-            <img 
-                className='message__profile-image'
-                src="https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                alt="profile image" 
-            />
-            <p className='message__sent-message'>example message</p>
-            <img 
-                className='message__sent-image'
-                src="https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                alt="sent image" 
-            />
-        </div>
-        <div className='message owner'>
-            <img 
-                className='message__profile-image'
-                src="https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                alt="profile image" 
-            />
-            <p className='message__sent-message'>example message</p>
-            <img 
-                className='message__sent-image'
-                src="https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                alt="sent image" 
-            />
-        </div>
-        
-        
+        {currentUser.uid === m.sender ? 
+            <div className='message owner'>
+                {m.message && 
+                    <>
+                        <img 
+                            className='message__profile-image'
+                            src={currentUser.photoURL}
+                            alt="profile image" 
+                        />
+                        <p className='message__sent-message'>{m.message}</p>
+                    </>
+                }
+                {m.messageURL && 
+                    <>
+                        <img 
+                            className='message__sent-image'
+                            src={m.messageURL}
+                            alt="profile image" 
+                        />
+                    </>
+                }
+            </div>
+        :
+            <div className='message'>
+                {m.message && 
+                    <>
+                        <img 
+                            className='message__profile-image'
+                            src={data.user.photoURL}
+                            alt="profile image" 
+                        />
+                        <p className='message__sent-message'>{m.message}</p>
+                    </>
+                }
+                {m.messageURL && 
+                    <>
+                        <img 
+                            className='message__sent-image'
+                            src={m.messageURL}
+                            alt="profile image" 
+                        />
+                    </>
+                }
+            </div>
+        }
     </>
   )
 }

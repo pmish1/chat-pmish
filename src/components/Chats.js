@@ -1,4 +1,4 @@
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, getDoc, onSnapshot } from 'firebase/firestore'
 import React, { useContext, useEffect, useState } from 'react'
 import { ChatContext } from '../context/ChatContext'
 import { UserContext } from '../context/UserContext'
@@ -11,15 +11,14 @@ function Chats() {
 
 
     useEffect(() => {
-        const getChats = async () => {
-            try {
-                const response = await getDoc(doc(db, "userChats", currentUser.uid))
-                setChats(response.data())
-            } catch (error) {
-                console.log(error)
-            }
+        const getChats = () => {
+            const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+                setChats(doc.data())
+            })
+            return () => {unsub()}
         }
-        return () => {getChats()}
+        //only works if comparing against currentUser.uid
+        currentUser.uid && getChats()
     }, [currentUser.uid])
 
     const handleClick = (userInfo) => {

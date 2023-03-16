@@ -1,10 +1,11 @@
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import React, { useContext, useState } from 'react'
 import { db, storage } from '../Firebase'
+import { arrayUnion, doc, setDoc, Timestamp, updateDoc } from 'firebase/firestore'
+import {v4 as uuid} from 'uuid'
 
 import {UserContext} from '../context/UserContext'
 import { ChatContext } from '../context/ChatContext'
-import { arrayUnion, doc, setDoc, Timestamp, updateDoc } from 'firebase/firestore'
 
 function Input() {
     const [message, setMessage] = useState("")
@@ -18,17 +19,27 @@ function Input() {
         const storageRef = ref(storage, data.chatId)
         try {
             if (image) {
+
                 const uploadTask = uploadBytesResumable(storageRef, image)
+
                 uploadTask.on('state_changed',
                     (snapshot) => {
-                        console.log(snapshot)
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                        switch (snapshot.state) {
+                        case 'paused':
+                            console.log('Upload is paused');
+                            break;
+                        case 'running':
+                            console.log('Upload is running');
+                            break;
+                        }
                     }, 
                     (error) => {
                         console.log(error)
                     },
                     () => {
                         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-
                             await updateDoc(doc(db, "chats", data.chatId), {
                                 messages: arrayUnion(
                                     {
