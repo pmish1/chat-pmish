@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, query, serverTimestamp, updateDoc, where } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from 'firebase/firestore'
 import React, { useContext, useState } from 'react'
 import { db } from '../Firebase'
 import { UserContext } from '../context/UserContext'
@@ -24,33 +24,39 @@ function Search() {
     const handleClick = async () => {
         console.log(currentUser.uid + result.uid)
 
-        try {
-            //add to signed in user data
-            await updateDoc(doc(db, "userChats", currentUser.uid), {
-                [currentUser.uid + result.uid]: {
-                    user: currentUser.displayName,
-                    talkingToID: result.uid,
-                    talkingTo: result.displayName,
-                    photoURL: result.photoURL,
-                    lastMessage: [],
-                },
-                timestamp: serverTimestamp()
-            })
-            //add to clicked on user data
-            await updateDoc(doc(db, "userChats", result.uid), {
-                [currentUser.uid + result.uid]: {
-                    user: result.displayName,
-                    talkingToID: currentUser.uid,
-                    talkingTo: currentUser.displayName,
-                    photoURL: currentUser.photoURL,
-                    lastMessage: [],
-                },
-                [(currentUser.uid + result.uid) + '.timestamp']: serverTimestamp()
-            })
-        } catch (error) {
-            console.log(error)
-        }
+        //check to see if there is an exisitng chat between the users 
+        const docSnap = await getDoc(doc(db, "chats", currentUser.uid + result.uid))
+        // if there isn't, create the link in the 'chats' collection
+        if (!docSnap.exists()) {
+            try {
+                await setDoc(doc(db, "chats", currentUser.uid + result.uid), { messages: [] })
 
+                //create the link for the signed in user 
+                await updateDoc(doc(db, "userChats", currentUser.uid), {
+                    [currentUser.uid + result.uid]: {
+                        user: currentUser.displayName,
+                        talkingToID: result.uid,
+                        talkingTo: result.displayName,
+                        photoURL: result.photoURL,
+                        lastMessage: [],
+                    },
+                    timestamp: serverTimestamp()
+                })
+                //create the link for the selected user 
+                await updateDoc(doc(db, "userChats", result.uid), {
+                    [currentUser.uid + result.uid]: {
+                        user: result.displayName,
+                        talkingToID: currentUser.uid,
+                        talkingTo: currentUser.displayName,
+                        photoURL: currentUser.photoURL,
+                        lastMessage: [],
+                    },
+                    [(currentUser.uid + result.uid) + '.timestamp']: serverTimestamp()
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        }
     }
 
   return (

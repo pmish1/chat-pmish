@@ -167,6 +167,11 @@
     justify-content: space-between;
     background: white;
 }
+
+.input__form {
+    display: flex;
+}
+
 .home .chat .input input {
     width: 90%;
     height: 90%;
@@ -182,4 +187,8 @@
     background-color: var(--blue);
     border-radius: 10px;
     font-size: 15px;
+}
+
+.input__form input[type="file"] {
+    display: none;
 }

@@ -6,7 +6,6 @@ import {ChatContext} from '../context/ChatContext'
 function Chat() {
 
     const {data, dispatch} = useContext(ChatContext)
-    console.log(data)
 
 
   return (
