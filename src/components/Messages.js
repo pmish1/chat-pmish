@@ -22,10 +22,12 @@ function Messages() {
 
   return (
     <div className="messages">
-        {messages?.map((m) => {
+        {/* {messages?.map((m) => {
             console.log(m);
             return <Message m={m} key={Math.random()}/>
-        })}
+        })} */}
+
+        {messages && <Message messages={messages} key={Math.random()} />}
     </div>
   )
 }
