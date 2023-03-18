@@ -7,6 +7,10 @@ import {v4 as uuid} from 'uuid'
 import {UserContext} from '../context/UserContext'
 import { ChatContext } from '../context/ChatContext'
 
+import {CiImageOn} from 'react-icons/ci'
+
+import addImage from '../images/addImage.png'
+
 function Input() {
     const [message, setMessage] = useState("")
     const [image, setImage] = useState(null)
@@ -90,7 +94,9 @@ function Input() {
                 onChange={e => setImage(e.target.files[0])}
                 id="send-file"
             />
-            <label htmlFor="send-file">IMG</label>
+            <label htmlFor="send-file">
+                <img className="image-icon" src={addImage} alt="add image" />
+            </label>
             <button type="submit">Send</button>
         </form>
     </div>

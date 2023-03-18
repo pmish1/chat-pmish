@@ -18,12 +18,17 @@ function Message({messages}) {
                         src={m.sender === currentUser.uid ? currentUser.photoURL : data.user.photoURL}
                         alt="profile image" 
                     />
+
                     {m.message.length > 0 && <p className='message__sent-message'>{m.message}</p>}
-                    <img 
-                        className='message__sent-image'
-                        src={m.messageURL}
-                        alt="profile image" 
-                    />
+                    <div> </div>
+
+                    {m.messageURL &&
+                        <img 
+                            className='message__sent-image'
+                            src={m.messageURL}
+                            alt="profile image" 
+                        />
+                    }
                 </div>
             )
         })}
