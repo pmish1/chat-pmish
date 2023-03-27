@@ -40,7 +40,7 @@ function Search() {
                         photoURL: result.photoURL,
                         lastMessage: [],
                     },
-                    timestamp: serverTimestamp()
+                    [(currentUser.uid + result.uid) + '.timestamp']: serverTimestamp()
                 })
                 //create the link for the selected user 
                 await updateDoc(doc(db, "userChats", result.uid), {
@@ -57,6 +57,9 @@ function Search() {
                 console.log(error)
             }
         }
+
+        setTerm("")
+        setResult(null)
     }
 
   return (

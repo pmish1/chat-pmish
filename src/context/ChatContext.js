@@ -34,7 +34,6 @@ export const ChatContextProvider = ({children}) => {
         initialState = we will assign this to 'state'
     
     */
-    console.log(state)
     return (
         <ChatContext.Provider value={{data: state, dispatch}}>
             {children}

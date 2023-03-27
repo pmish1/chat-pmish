@@ -9,6 +9,7 @@ function Navbar() {
 
     const currentUser = useContext(UserContext)
 
+
     const handleSignOut = () => {
         try {
             signOut(auth)
@@ -20,9 +21,9 @@ function Navbar() {
 
   return (
       <div className="navbar">
-        <h3>{currentUser?.displayName}</h3>
+        <h3>{currentUser.displayName}</h3>
         <img 
-            src={currentUser?.photoURL} 
+            src={currentUser.photoURL} 
             alt="profile image" 
         />
         <button onClick={handleSignOut}>Logout</button>

@@ -16,12 +16,17 @@ function App() {
         return children
     }
 
+    const SecondProtectedRoute = ({children}) => {
+        if (currentUser) return <Navigate to='/home' />
+        return children
+    }
+
   return (
     <Router>
         <Routes>
             <Route path='/' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<SecondProtectedRoute><Register /></SecondProtectedRoute>} />
+            <Route path='/login' element={<SecondProtectedRoute><Login /></SecondProtectedRoute>} />
             <Route path="/home" element={<ProtectedRoute> <Home /> </ProtectedRoute>}/>
         </Routes>
     </Router>

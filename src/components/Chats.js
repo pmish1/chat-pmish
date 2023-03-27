@@ -31,9 +31,9 @@ function Chats() {
         {chats && Object.entries(chats).map((chat) => {
             return (
                 <div className="chats" key={chat[0]} onClick={() => handleClick(chat)}>
-                    <h3>{chat[1].talkingTo}</h3>
+                    <h3>{chat[1]?.talkingTo}</h3>
                     <img 
-                        src={chat[1].photoURL}  
+                        src={chat[1]?.photoURL}  
                         alt="profile image"
                     />
                 </div>
