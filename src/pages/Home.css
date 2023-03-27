@@ -29,7 +29,7 @@
     align-items: center;
     background: var(--green-dark);
     color: var(--cream);
-    padding: 5px 20px;
+    padding: 0 20px;
 }
 .navbar img {
     width: 45px;

@@ -27,7 +27,12 @@ function Messages() {
             return <Message m={m} key={Math.random()}/>
         })} */}
 
-        {messages && <Message messages={messages} key={Math.random()} />}
+        {/* {messages && <Message messages={messages} key={Math.random()} />} */}
+        {messages && messages.map((message) => {
+            return (
+                <Message message={message} key={Math.random()} />
+            )
+        })}
     </div>
   )
 }

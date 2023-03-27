@@ -10,6 +10,7 @@ function Navbar() {
     const currentUser = useContext(UserContext)
 
 
+
     const handleSignOut = () => {
         try {
             signOut(auth)
