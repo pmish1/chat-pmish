@@ -85,11 +85,11 @@ function Register() {
             <input type="email" placeholder='email' onChange={(e) => setEmail(e.target.value)}/>
             <input type="password" placeholder='password' onChange={(e) => setPassword(e.target.value)}/>
             <input type="file" id="profilePic" onChange={(e) => setFile(e.target.files[0])} required/>
-            <label htmlFor="profilePic" required>Add profile picture</label>
+            <label htmlFor="profilePic" required> + Add profile picture</label>
 
             <button type='submit' onClick={handleSubmit}>Register</button>
             
-            <span>Already registered? <Link to="/login">Login</Link></span>
+            <span>Already registered? <Link to="/login" style={{textDecoration: "none", color: "#f4e5c2", fontWeight: "bold"}}>Login</Link></span>
 
         </form>
 

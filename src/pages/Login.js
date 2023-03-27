@@ -31,7 +31,14 @@ function Login() {
 
         <button type='submit'>Login</button>
         
-        <span>Don't have an account? <Link to='/register'>Register</Link></span>
+        <span>Don't have an account? 
+            <Link 
+                to='/register' 
+                    style={{textDecoration: "none", color: "#f4e5c2", fontWeight: "bold", marginLeft: "5px"}}
+            >
+                Register
+            </Link>
+        </span>
 
     </form>
 

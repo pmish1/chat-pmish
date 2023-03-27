@@ -1,12 +1,12 @@
 :root {
-    --teal-green: #128C7E;
-    --teal-green-dark: #075E54;
-    --light-green: #25D366;
-    --blue: #34B7F1;
+    --gray: #323232;
+    --green-dark: #295F4E;
+    --green-light: #60a386;
+    --cream: #F4E5C2;
 }
 
 .registerForm {
-    background: var(--teal-green-dark);
+    background: var(--gray);
     height: 100vh;
     display: flex;
     align-items: center;
@@ -16,8 +16,8 @@
 .registerForm form {
     display: flex;
     flex-direction: column;
-    background: var(--teal-green);
-    color: white;
+    background: var(--green-light);
+    color: var(--gray);
     border-radius: 20px;
     padding: 30px;
     width: 18%;
@@ -27,6 +27,8 @@
     padding: 10px;
     margin-bottom: 10px;
     border: none;
+    border-radius: 10px;
+    outline: none;
 }
 
 .registerForm input[type='file'] {
@@ -35,7 +37,25 @@
 
 .registerForm label {
     padding: 10px;
+    background: var(--green-dark);
+    color: var(--cream);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: center;   
+    cursor: pointer;
 }
+
+.registerForm button {
+    background: var(--green-dark);
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--cream);
+}
+.registerForm button:hover {
+    background: #1a3d32;
+}
+
 
 .registerForm span {
     padding: 10px 0;
