@@ -47,6 +47,7 @@
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    margin-right: -17px;
 }
 .navbar button:hover {
     transform: scale(1.05);
