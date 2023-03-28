@@ -6,7 +6,8 @@
 }
 
 .loginForm {
-    background: var(--gray);
+    /* background: var(--gray); */
+    background-image: url('../images/chatBackground3.png');
     height: 100vh;
     display: flex;
     align-items: center;
@@ -16,8 +17,8 @@
 .loginForm form {
     display: flex;
     flex-direction: column;
-    background: var(--green-light);
-    color: var(--gray);
+    background: var(--green-dark);
+    color: var(--cream);
     border-radius: 20px;
     padding: 30px;
     width: 18%;
@@ -32,17 +33,36 @@
 }
 
 .loginForm button {
-    background: var(--green-dark);
+    background: var(--gray);
     border: none;
     padding: 10px;
     border-radius: 10px;
     color: var(--cream);
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
 }
 .loginForm button:hover {
-    background: #1a3d32;
+    background: var(--green-light);
+    color: var(--cream);
 }
 
 
 .loginForm span {
     padding: 10px 0;
+    color: var(--green-light)
+}
+
+@media screen and (max-width: 850px) {
+    .loginForm form {
+        margin: 0 50px;
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .loginForm form {
+        width: 400px;
+        margin: 30px 5px;
+    }
 }

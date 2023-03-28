@@ -10,7 +10,14 @@ function Chat() {
 
   return (
     <div className="chat">
-        {data && <span>{data.user.talkingTo}</span>}
+
+        {data && 
+            <span className="chat_header">
+                    <span className="chat_label">Talking to:</span>
+                    {data.user.talkingTo}
+            </span>
+        }
+
         <Messages />
         <Input />
     </div>

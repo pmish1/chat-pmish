@@ -34,7 +34,7 @@ function Login() {
         <span>Don't have an account? 
             <Link 
                 to='/register' 
-                    style={{textDecoration: "none", color: "#f4e5c2", fontWeight: "bold", marginLeft: "5px"}}
+                    style={{textDecoration: "none", color: "#F4E5C2", fontWeight: "bold", marginLeft: "5px"}}
             >
                 Register
             </Link>

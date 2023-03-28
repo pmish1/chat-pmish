@@ -25,6 +25,8 @@ function Chats() {
         dispatch({type: 'CHANGE_USER', payload: userInfo})
     }
 
+    console.log(chats)
+
 
   return (
     <>
@@ -35,6 +37,7 @@ function Chats() {
                         src={chat[1]?.photoURL}  
                         alt="profile image"
                         />
+                    {chat[1].lastMessage.lastM && <p>Sent: {chat[1].lastMessage.lastM}</p>}
                     <h3>{chat[1]?.talkingTo}</h3>
                 </div>
             )

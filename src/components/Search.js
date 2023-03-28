@@ -2,6 +2,7 @@ import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updat
 import React, { useContext, useState } from 'react'
 import { db } from '../Firebase'
 import { UserContext } from '../context/UserContext'
+import {AiOutlineSearch} from 'react-icons/ai'
 
 function Search() {
     const [term, setTerm] = useState("")
@@ -64,12 +65,16 @@ function Search() {
 
   return (
     <div className='search'>
-        <input 
-            type="text" 
-            placeholder='search profiles' 
-            onChange={(e) => setTerm(e.target.value)}
-            onKeyDown={(e) => (e.code === "Enter" && handleSearch())}
-        />
+        
+        <div className='searchBar'>
+            <input 
+                type="text" 
+                placeholder='search profiles' 
+                onChange={(e) => setTerm(e.target.value)}
+                onKeyDown={(e) => (e.code === "Enter" && handleSearch())}
+            />
+            <AiOutlineSearch size="23px" color="#295F4E"/>
+        </div>
 
         {
             result && 

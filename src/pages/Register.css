@@ -6,7 +6,7 @@
 }
 
 .registerForm {
-    background: var(--gray);
+    background-image: url('../images/chatBackground3.png');
     height: 100vh;
     display: flex;
     align-items: center;
@@ -16,8 +16,8 @@
 .registerForm form {
     display: flex;
     flex-direction: column;
-    background: var(--green-light);
-    color: var(--gray);
+    background: var(--green-dark);
+    color: var(--cream);
     border-radius: 20px;
     padding: 30px;
     width: 18%;
@@ -37,26 +37,45 @@
 
 .registerForm label {
     padding: 10px;
-    background: var(--green-dark);
-    color: var(--cream);
+    background: var(--green-light);
+    color: var(--gray);
     border-radius: 10px;
     margin-bottom: 10px;
     text-align: center;   
     cursor: pointer;
+    font-size: 13px;
 }
 
 .registerForm button {
-    background: var(--green-dark);
+    background: var(--gray);
     border: none;
     padding: 10px;
     border-radius: 10px;
     color: var(--cream);
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
 }
 .registerForm button:hover {
-    background: #1a3d32;
+    background: var(--green-light);
 }
 
 
 .registerForm span {
     padding: 10px 0;
+    color: var(--green-light)
+}
+
+@media screen and (max-width: 850px) {
+    .registerForm form {
+        margin: 0 50px;
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .registerForm form {
+        width: 400px;
+        margin: 30px 5px;
+    }
 }

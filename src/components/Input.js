@@ -1,8 +1,9 @@
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import React, { useContext, useState } from 'react'
 import { db, storage } from '../Firebase'
-import { arrayUnion, doc, setDoc, Timestamp, updateDoc } from 'firebase/firestore'
+import { arrayUnion, doc, serverTimestamp, setDoc, Timestamp, updateDoc } from 'firebase/firestore'
 import {v4 as uuid} from 'uuid'
+import {MdDriveFolderUpload} from 'react-icons/md'
 
 import {UserContext} from '../context/UserContext'
 import { ChatContext } from '../context/ChatContext'
@@ -14,6 +15,8 @@ import addImage from '../images/addImage.png'
 function Input() {
     const [message, setMessage] = useState("")
     const [image, setImage] = useState(null)
+
+    const lastM = image ? "Image was sent" : message
 
     const currentUser = useContext(UserContext)
     const {data, dispatch} = useContext(ChatContext)
@@ -56,6 +59,7 @@ function Input() {
                                 )
                                     
                             })
+
                         })
                     }
                 )
@@ -74,6 +78,14 @@ function Input() {
                 })
                 setMessage("")
             }
+
+            await updateDoc(doc(db, "userChats", currentUser.uid), {
+                [data.chatId + ".lastMessage"]: {lastM}
+            })
+            await updateDoc(doc(db, "userChats", data.user.talkingToID), {
+                [data.chatId + ".lastMessage"]: {lastM}
+            })
+
         } catch (error) {
             console.log(error)
         }
@@ -95,7 +107,8 @@ function Input() {
                 id="send-file"
             />
             <label htmlFor="send-file">
-                <img className="image-icon" src={addImage} alt="add image" />
+                {/* <img className="image-icon" src={addImage} alt="add image" /> */}
+                <MdDriveFolderUpload size="45px" color="#60a386"/>
             </label>
             <button type="submit">Send</button>
         </form>
