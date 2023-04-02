@@ -113,9 +113,8 @@
 /* --------- */
 
 .chats {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     padding: 10px 20px;
     margin: 5px 5px;
     background: var(--green-dark);
@@ -136,20 +135,25 @@
 }
 
 .chats__user {
-    width: 80%;
-    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.chats__sent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .chats p {
     font-size: 17px;
     opacity: 0.7;
-    width: 200px;
+    width: 150px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: end;
     font-size: 12px;
-    /* border: 2px solid red; */
 }
 
 /* --------CHAT--------- */

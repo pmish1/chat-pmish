@@ -34,10 +34,14 @@ function Chats() {
                         src={chat[1]?.photoURL}  
                         alt="profile image"
                         />
+
+                    <div className='chats__sent'>
+                        {chat[1].lastMessage.lastM && <p>Sent: {chat[1].lastMessage.lastM}</p>}
+                    </div>
+
                     <div className='chats__user'>
                         <h3>{chat[1]?.talkingTo}</h3>
                     </div>
-                    {chat[1].lastMessage.lastM && <p>Sent: {chat[1].lastMessage.lastM}</p>}
                 </div>
             )
         })}
