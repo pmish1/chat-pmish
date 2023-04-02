@@ -25,6 +25,7 @@ is made in the database to facilitate conversation in the future.
 **NOTE**: Upon registering, there is a delay before profile details appear in the navbar. Upon sending an image, there is a delay before sent image is displayed. 
 
 **DEMO ACCOUNTS** 
+
 mrburns@test.com 
 password: mrburns
 
@@ -34,9 +35,9 @@ password: krusty
 lisasimpson@test.com 
 password: lisasimpson
 
-homer
-chiefwiggum
-pattysimpson
-selamsimpson
-ned
-marge
+- homer
+- chiefwiggum
+- pattysimpson
+- selamsimpson
+- ned
+- marge
