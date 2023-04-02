@@ -9,7 +9,8 @@ providing the option to search and add friends on the platform.
 secure and streamlined login/registration process for users. 
 
 
-**Core functionality** 
+**CORE FUNCTIONALITY** 
+
 *Login/registration*: Login and password management is handled by Google Authentication (provided by Firebase). Registration involves saving the user in the database with the required email, 
 profile picture and username. Images are uploded to Firebase and a downloadable URL link of the picture is saved to the corresponding profile. To ensure user stays logged in (even after a refresh), they are saved to context.
 
