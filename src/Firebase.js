@@ -5,7 +5,7 @@ import {getAuth} from "firebase/auth"
 import {getStorage} from "firebase/storage"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDV_zPSuE5982987NoYF5KuaEk66VqIUxQ",
+  apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   authDomain: "whats-app-44493.firebaseapp.com",
   projectId: "whats-app-44493",
   storageBucket: "whats-app-44493.appspot.com",

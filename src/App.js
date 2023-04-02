@@ -10,6 +10,8 @@ import { UserContext } from './context/UserContext';
 function App() {
 
     const currentUser = useContext(UserContext)
+
+    console.log(process.env.REACT_APP_GOOGLE_API_KEY)
     
     const ProtectedRoute = ({children}) => {
         if (!currentUser) return <Navigate to='/login' />
