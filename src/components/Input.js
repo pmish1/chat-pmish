@@ -16,10 +16,12 @@ function Input() {
     const [message, setMessage] = useState("")
     const [image, setImage] = useState(null)
 
+
     const lastM = image ? "Image was sent" : message
 
     const currentUser = useContext(UserContext)
     const {data, dispatch} = useContext(ChatContext)
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -31,16 +33,7 @@ function Input() {
 
                 uploadTask.on('state_changed',
                     (snapshot) => {
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log('Upload is ' + progress + '% done');
-                        switch (snapshot.state) {
-                        case 'paused':
-                            console.log('Upload is paused');
-                            break;
-                        case 'running':
-                            console.log('Upload is running');
-                            break;
-                        }
+                        console.log("")
                     }, 
                     (error) => {
                         console.log(error)
@@ -63,8 +56,6 @@ function Input() {
                         })
                     }
                 )
-                setImage(null)
-                setMessage("")
             } else {
                 await updateDoc(doc(db, "chats", data.chatId), {
                     messages: arrayUnion(
@@ -86,6 +77,9 @@ function Input() {
                 [data.chatId + ".lastMessage"]: {lastM}
             })
 
+            setImage(null)
+            setMessage("")
+
         } catch (error) {
             console.log(error)
         }
@@ -97,20 +91,22 @@ function Input() {
         <form className='input__form' onSubmit={handleSubmit}>
             <input 
                 type="text"
-                placeholder="write message" 
+                placeholder={data.user ? "write message" : "select a friend"} 
                 onChange={e => setMessage(e.target.value)}
                 value={message ? message : ""}
+                disabled={data.user ? false : true}
             />
             <input 
                 type="file" 
                 onChange={e => setImage(e.target.files[0])}
                 id="send-file"
+                disabled={data.user ? false: true}
             />
             <label htmlFor="send-file">
                 {/* <img className="image-icon" src={addImage} alt="add image" /> */}
                 <MdDriveFolderUpload size="45px" color="#60a386"/>
             </label>
-            <button type="submit">Send</button>
+            <button type="submit" disabled={data.user ? false : true}>Send</button>
         </form>
     </div>
   )

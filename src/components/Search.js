@@ -23,8 +23,6 @@ function Search() {
     }
 
     const handleClick = async () => {
-        console.log(currentUser.uid + result.uid)
-
         //check to see if there is an exisitng chat between the users 
         const docSnap = await getDoc(doc(db, "chats", currentUser.uid + result.uid))
         // if there isn't, create the link in the 'chats' collection

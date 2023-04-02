@@ -66,8 +66,10 @@ function Register() {
                         })
 
                         await setDoc((doc(db, "userChats", response.user.uid)), {})
+
+                        navigate('/home')
                     });
-                    navigate('/home')
+                   
                 }
             );
         }

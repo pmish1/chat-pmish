@@ -12,14 +12,8 @@ function Navbar() {
     const currentUser = useContext(UserContext)
 
 
-
     const handleSignOut = () => {
-        try {
-            signOut(auth)
-            navigate('/login')
-        } catch (error) {
-            console.log(error)
-        }
+        signOut(auth).then(() => navigate('/login')).catch((error) => console.log(error))
     }
 
   return (
@@ -27,10 +21,10 @@ function Navbar() {
         <div className="navbar__profile">
             {/* <VscAccount size="20px"/> */}
             <img 
-                src={currentUser.photoURL} 
+                src={currentUser?.photoURL} 
                 alt="profile image" 
             />
-            <h3>{currentUser.displayName}</h3>
+            <h3>{currentUser?.displayName}</h3>
         </div>
         <button onClick={handleSignOut}>
             Logout
