@@ -21,3 +21,22 @@ an id for the chat itself, timestamps for each message. This is then uploaded to
 
 *Search*: The username is looked up in the exisiting user database. If found, it is displayed. Once displayed, if the user clicks on the found profile, a link between the logged-in-user and the selected proifle 
 is made in the database to facilitate conversation in the future. 
+
+**NOTE**: Upon registering, there is a delay before profile details appear in the navbar. Upon sending an image, there is a delay before sent image is displayed. 
+
+**DEMO ACCOUNTS** 
+mrburns@test.com 
+password: mrburns
+
+krusty@test.com 
+password: krusty
+
+lisasimpson@test.com 
+password: lisasimpson
+
+homer
+chiefwiggum
+pattysimpson
+selamsimpson
+ned
+marge
