@@ -1,5 +1,23 @@
 **Access here**: https://whats-app-44493.web.app
 
+**DEMO ACCOUNTS** 
+
+mrburns@test.com 
+password: mrburns
+
+krusty@test.com 
+password: krusty
+
+lisasimpson@test.com 
+password: lisasimpson
+
+- homer
+- chiefwiggum
+- pattysimpson
+- selamsimpson
+- ned
+- marge
+
 Real-time web-based chat application, equipped with user authentication and authorization functionalities. Enabled users to seamlessly exchange text and image-based messages, while also
 providing the option to search and add friends on the platform.
 
@@ -24,20 +42,3 @@ is made in the database to facilitate conversation in the future.
 
 **NOTE**: Upon registering, there is a delay before profile details appear in the navbar. Upon sending an image, there is a delay before sent image is displayed. 
 
-**DEMO ACCOUNTS** 
-
-mrburns@test.com 
-password: mrburns
-
-krusty@test.com 
-password: krusty
-
-lisasimpson@test.com 
-password: lisasimpson
-
-- homer
-- chiefwiggum
-- pattysimpson
-- selamsimpson
-- ned
-- marge
